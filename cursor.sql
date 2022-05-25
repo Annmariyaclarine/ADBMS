@@ -1,4 +1,5 @@
 delimiter //
+drop procedure if exists newcursor //
 create procedure newcursor(inout namelist varchar(100))
 begin
 declare is_done int default 0;
@@ -11,7 +12,7 @@ fetch libcursor into b_name;
 if is_done =1 then
 leave getdata;
 end if;
-set namelist = concat(b_name,' ',namelist);
+set namelist = concat(b_name,',',namelist);
 end loop;
 close libcursor;
 
